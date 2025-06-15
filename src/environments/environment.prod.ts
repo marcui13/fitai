@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  openaiApiKey: 'tu-api-key-aqui'
 };
