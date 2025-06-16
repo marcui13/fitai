@@ -10,9 +10,11 @@ import { filter } from 'rxjs/operators';
   standalone: false,
 })
 export class AppComponent {
+  currentLang = 'es';
+
   constructor(
     private menu: MenuController,
-    private router: Router
+    private router: Router,
   ) {
     // Cerrar el menú cuando se navega a una nueva ruta
     this.router.events.pipe(

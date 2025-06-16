@@ -16,11 +16,10 @@
   <div class="history-container">
     <div *ngIf="history.length === 0" class="empty-state">
       <ion-icon name="fitness-outline"></ion-icon>
-      <h2>No Workout History</h2>
-      <p>Your generated workout plans will appear here</p>
+      <h2>No tienes Historial de Entrenamientos</h2>
+      <p>Cuando generes un Plan de Entranamiento, lo verás aquí.</p>
       <ion-button routerLink="/workout-form">
-        Create New Workout
-        <ion-icon name="add-outline" slot="end"></ion-icon>
+        Crear Plan de Entrenamiento
       </ion-button>
     </div>
 
@@ -52,4 +51,4 @@
       </ion-item-sliding>
     </ion-list>
   </div>
-</ion-content> 
+</ion-content>

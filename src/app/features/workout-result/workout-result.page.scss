@@ -31,7 +31,7 @@ ion-card-header {
 
 ion-card-subtitle {
   font-size: 14px;
-  color: var(--ion-color-medium);
+  color: var(--app-text-color);
 }
 
 ion-card-title {
@@ -83,7 +83,8 @@ ion-card-title {
   padding-top: 16px;
   border-top: 1px solid var(--ion-color-light);
 
-  .motivational-quote, .daily-tip {
+  .motivational-quote,
+  .daily-tip {
     display: flex;
     align-items: flex-start;
     gap: 12px;
@@ -108,7 +109,7 @@ ion-card-title {
 
   .motivational-quote {
     background: rgba(var(--ion-color-primary-rgb), 0.1);
-    
+
     ion-icon {
       color: var(--ion-color-primary);
     }
@@ -116,7 +117,7 @@ ion-card-title {
 
   .daily-tip {
     background: rgba(var(--ion-color-success-rgb), 0.1);
-    
+
     ion-icon {
       color: var(--ion-color-success);
     }
@@ -125,7 +126,7 @@ ion-card-title {
 
 .notes-card {
   background: var(--ion-color-light);
-  
+
   ion-card-title {
     font-size: 18px;
     color: var(--app-text-color);
@@ -143,25 +144,19 @@ ion-card-title {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  height: 100%;
   text-align: center;
+  padding: 20px;
+  color: var(--ion-color-danger);
 
   ion-icon {
     font-size: 48px;
-    color: var(--ion-color-danger);
     margin-bottom: 16px;
   }
 
-  h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--app-text-color);
-    margin: 0 0 8px 0;
-  }
-
   p {
-    color: var(--ion-color-medium);
-    margin: 0 0 24px 0;
+    margin-bottom: 20px;
+    color: var(--ion-color-danger);
   }
 }
 
@@ -170,15 +165,191 @@ ion-card-title {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  height: 100%;
   text-align: center;
+  color: var(--ion-color-medium);
 
   ion-spinner {
+    width: 48px;
+    height: 48px;
     margin-bottom: 16px;
   }
 
   p {
+    font-size: 1.2em;
     color: var(--ion-color-medium);
-    margin: 0;
   }
-} 
+}
+
+.workout-plan {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 32px;
+}
+
+.plan-header {
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, var(--ion-color-primary) 0%, var(--ion-color-primary-shade) 100%);
+  color: white;
+
+  ion-card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  ion-card-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.day-card {
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  ion-card-header {
+    background: var(--ion-color-light);
+    border-radius: 12px 12px 0 0;
+  }
+
+  ion-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2em;
+    color: var(--ion-color-primary);
+
+    ion-icon {
+      font-size: 1.2em;
+    }
+  }
+
+  .exercise-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    margin-bottom: 12px;
+
+    h2 {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: var(--ion-color-dark);
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: var(--ion-color-medium);
+      margin: 4px 0;
+      font-size: 0.9em;
+    }
+  }
+
+  .day-motivation {
+    margin-top: 16px;
+    padding: 12px;
+    background: var(--ion-color-light);
+    border-radius: 8px;
+
+    .motivational-quote,
+    .daily-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 12px;
+
+      ion-icon {
+        font-size: 1.2em;
+        color: var(--ion-color-primary);
+        margin-top: 2px;
+      }
+
+      p {
+        margin: 0;
+        font-style: italic;
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+}
+
+.notes-card,
+.motivation-card,
+.tip-card {
+  margin-bottom: 20px;
+  border-radius: 12px;
+
+  ion-card-header {
+    ion-card-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ion-color-primary);
+
+      ion-icon {
+        font-size: 1.2em;
+      }
+    }
+  }
+
+  ion-card-content {
+    p {
+      margin: 0;
+      line-height: 1.6;
+      color: var(--ion-color-medium);
+    }
+  }
+}
+
+.motivation-card {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  color: white;
+
+  ion-card-title,
+  ion-icon {
+    color: white;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.tip-card {
+  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  color: white;
+
+  ion-card-title,
+  ion-icon {
+    color: white;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+ion-button {
+  margin-top: 20px;
+  --border-radius: 8px;
+  font-weight: bold;
+
+  ion-icon {
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .workout-plan {
+    padding: 0;
+  }
+
+  .plan-header {
+    ion-card-title {
+      font-size: 1.3em;
+    }
+  }
+
+  .day-card {
+    margin: 16px 0;
+  }
+}

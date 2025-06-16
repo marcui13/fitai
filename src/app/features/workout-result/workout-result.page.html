@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/workout-form"></ion-back-button>
+      <ion-back-button [text]="isFromHistory ? 'Historial' : 'Formulario'" defaultHref="/workout-form"></ion-back-button>
     </ion-buttons>
-    <ion-title>Your Workout Plan</ion-title>
+    <ion-title>💪 Plan de Entrenamiento</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="copyToClipboard()">
         <ion-icon name="copy-outline" slot="icon-only"></ion-icon>
@@ -12,37 +12,58 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="result-container" *ngIf="workoutPlan">
-    <h1 class="result-title">💪 {{ workoutPlan.title }}</h1>
-    <p class="result-description">{{ workoutPlan.description }}</p>
+<ion-content class="ion-padding">
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>🎯 Generando tu plan de entrenamiento personalizado...</p>
+  </div>
 
-    <ion-card *ngFor="let day of workoutPlan.weeklySchedule">
+  <div *ngIf="error" class="error-container">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <p>{{ error }}</p>
+    <ion-button expand="block" (click)="generatePlan()" *ngIf="!isFromHistory">
+      <ion-icon name="refresh-outline" slot="start"></ion-icon>
+      Intentar de nuevo
+    </ion-button>
+  </div>
+
+  <div *ngIf="workoutPlan && !isLoading && !error" class="workout-plan">
+    <ion-card class="plan-header">
       <ion-card-header>
-        <ion-card-subtitle>Day {{ day.dayNumber }}</ion-card-subtitle>
-        <ion-card-title>🎯 {{ day.focus }}</ion-card-title>
+        <ion-card-title>🏆 {{ workoutPlan.title }}</ion-card-title>
+        <ion-card-subtitle>📝 {{ workoutPlan.description }}</ion-card-subtitle>
       </ion-card-header>
+    </ion-card>
+
+    <ion-card *ngFor="let day of workoutPlan.weeklySchedule" class="day-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="calendar-outline"></ion-icon>
+          Día {{ day.dayNumber }} - {{ day.focus }}
+        </ion-card-title>
+      </ion-card-header>
+
       <ion-card-content>
-        <div class="exercise-list">
-          <div class="exercise-item" *ngFor="let exercise of day.exercises">
-            <h3>🏋️‍♂️ {{ exercise.name }}</h3>
-            <p class="exercise-details">
-              <span class="sets">📊 Sets: {{ exercise.sets }}</span>
-              <span class="reps">🔄 Reps: {{ exercise.reps }}</span>
-              <span class="rest" *ngIf="exercise.rest">⏱️ Rest: {{ exercise.rest }}</span>
-            </p>
-            <p class="exercise-notes" *ngIf="exercise.notes">💡 {{ exercise.notes }}</p>
-          </div>
-        </div>
+        <ion-list>
+          <ion-item *ngFor="let exercise of day.exercises" class="exercise-item">
+            <ion-label>
+              <h2>🏋️‍♂️ {{ exercise.name }}</h2>
+              <p>📊 Series: {{ exercise.sets }}</p>
+              <p>🔄 Repeticiones: {{ exercise.reps }}</p>
+              <p *ngIf="exercise.rest">⏱️ Descanso: {{ exercise.rest }}</p>
+              <p *ngIf="exercise.notes" class="exercise-notes">💡 {{ exercise.notes }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
 
         <div class="day-motivation">
           <div class="motivational-quote">
             <ion-icon name="quote-outline"></ion-icon>
-            <p>{{ day.motivationalQuote }}</p>
+            <p>✨ {{ day.motivationalQuote }}</p>
           </div>
           <div class="daily-tip">
             <ion-icon name="bulb-outline"></ion-icon>
-            <p>{{ day.dailyTip }}</p>
+            <p>💪 {{ day.dailyTip }}</p>
           </div>
         </div>
       </ion-card-content>
@@ -50,23 +71,45 @@
 
     <ion-card class="notes-card">
       <ion-card-header>
-        <ion-card-title>📝 General Notes</ion-card-title>
+        <ion-card-title>
+          <ion-icon name="document-text-outline"></ion-icon>
+          Notas Generales
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>{{ workoutPlan.generalNotes }}</p>
+        <p>📋 {{ workoutPlan.generalNotes }}</p>
       </ion-card-content>
     </ion-card>
-  </div>
 
-  <div class="error-container" *ngIf="error">
-    <ion-icon name="alert-circle-outline"></ion-icon>
-    <h2>Error</h2>
-    <p>{{ error }}</p>
-    <ion-button (click)="generatePlan()">Try Again</ion-button>
-  </div>
+    <ion-card class="motivation-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="heart-outline"></ion-icon>
+          Frase Motivacional del Día
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="quote">💫 {{ workoutPlan.motivationalQuote }}</p>
+      </ion-card-content>
+    </ion-card>
 
-  <div class="loading-container" *ngIf="isLoading">
-    <ion-spinner name="circular"></ion-spinner>
-    <p>Generating your personalized workout plan...</p>
+    <ion-card class="tip-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="lightbulb-outline"></ion-icon>
+          Consejo del Día
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>🌟 {{ workoutPlan.dailyTip }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="ion-padding">
+      <ion-button expand="block" (click)="copyToClipboard()">
+        <ion-icon name="copy-outline" slot="start"></ion-icon>
+        Copiar Plan Completo
+      </ion-button>
+    </div>
   </div>
 </ion-content> 

@@ -1,59 +1,50 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>FitAI Workout Planner</ion-title>
+    <ion-title>💪 Crear Plan de Entrenamiento</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <div class="form-container">
-    <h1 class="form-title">💪 Create Your Workout Plan</h1>
-    <p class="form-subtitle">Tell us about yourself to get a personalized workout routine</p>
+    <h1 class="form-title">Crear Plan de Entrenamiento</h1>
+    <p class="form-subtitle">Cuéntanos sobre ti para obtener un plan de entrenamiento personalizado</p>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <ion-card>
         <ion-card-header>
-          <ion-card-subtitle>👤 Personal Information</ion-card-subtitle>
+          <ion-card-title>👤 Información Personal</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <ion-item>
-            <ion-label position="stacked">🎂 Age</ion-label>
-            <ion-input type="number" formControlName="age" placeholder="Enter your age"></ion-input>
-            <ion-note slot="error" *ngIf="form.get('age')?.errors?.['required'] && form.get('age')?.touched">
-              Age is required
-            </ion-note>
-            <ion-note slot="error" *ngIf="form.get('age')?.errors?.['min'] || form.get('age')?.errors?.['max']">
-              Age must be between 16 and 100
-            </ion-note>
+            <ion-label position="stacked">🎂 Edad</ion-label>
+            <ion-input type="number" formControlName="age" placeholder="Ingresa tu edad"></ion-input>
           </ion-item>
+          <ion-note color="danger" *ngIf="form.get('age')?.invalid && form.get('age')?.touched">
+            La edad debe estar entre 16 y 100 años
+          </ion-note>
 
           <ion-item>
-            <ion-label position="stacked">📏 Height (cm)</ion-label>
-            <ion-input type="number" formControlName="height" placeholder="Enter your height"></ion-input>
-            <ion-note slot="error" *ngIf="form.get('height')?.errors?.['required'] && form.get('height')?.touched">
-              Height is required
-            </ion-note>
-            <ion-note slot="error" *ngIf="form.get('height')?.errors?.['min'] || form.get('height')?.errors?.['max']">
-              Height must be between 100 and 250 cm
-            </ion-note>
+            <ion-label position="stacked">📏 Altura (cm)</ion-label>
+            <ion-input type="number" formControlName="height" placeholder="Ingresa tu altura en centímetros"></ion-input>
           </ion-item>
+          <ion-note color="danger" *ngIf="form.get('height')?.invalid && form.get('height')?.touched">
+            La altura debe estar entre 100 y 250 cm
+          </ion-note>
 
           <ion-item>
-            <ion-label position="stacked">⚖️ Weight (kg)</ion-label>
-            <ion-input type="number" formControlName="weight" placeholder="Enter your weight"></ion-input>
-            <ion-note slot="error" *ngIf="form.get('weight')?.errors?.['required'] && form.get('weight')?.touched">
-              Weight is required
-            </ion-note>
-            <ion-note slot="error" *ngIf="form.get('weight')?.errors?.['min'] || form.get('weight')?.errors?.['max']">
-              Weight must be between 30 and 300 kg
-            </ion-note>
+            <ion-label position="stacked">⚖️ Peso (kg)</ion-label>
+            <ion-input type="number" formControlName="weight" placeholder="Ingresa tu peso en kilogramos"></ion-input>
           </ion-item>
+          <ion-note color="danger" *ngIf="form.get('weight')?.invalid && form.get('weight')?.touched">
+            El peso debe estar entre 30 y 300 kg
+          </ion-note>
 
           <ion-item>
-            <ion-label>👥 Gender</ion-label>
-            <ion-select formControlName="gender" interface="popover" placeholder="Select your gender">
-              <ion-select-option value="male">Male</ion-select-option>
-              <ion-select-option value="female">Female</ion-select-option>
-              <ion-select-option value="other">Other</ion-select-option>
+            <ion-label position="stacked">👥 Género</ion-label>
+            <ion-select formControlName="gender" placeholder="Selecciona tu género">
+              <ion-select-option value="male">Masculino</ion-select-option>
+              <ion-select-option value="female">Femenino</ion-select-option>
+              <ion-select-option value="other">Otro</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-card-content>
@@ -61,44 +52,48 @@
 
       <ion-card>
         <ion-card-header>
-          <ion-card-subtitle>🏋️‍♂️ Fitness Profile</ion-card-subtitle>
+          <ion-card-title>🏋️‍♂️ Perfil de Fitness</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <ion-item>
-            <ion-label>📈 Fitness Level</ion-label>
-            <ion-select formControlName="fitnessLevel" interface="popover" placeholder="Select your fitness level">
-              <ion-select-option value="beginner">Beginner</ion-select-option>
-              <ion-select-option value="intermediate">Intermediate</ion-select-option>
-              <ion-select-option value="advanced">Advanced</ion-select-option>
+            <ion-label position="stacked">📊 Nivel de Fitness</ion-label>
+            <ion-select formControlName="fitnessLevel" placeholder="Selecciona tu nivel">
+              <ion-select-option value="beginner">Principiante</ion-select-option>
+              <ion-select-option value="intermediate">Intermedio</ion-select-option>
+              <ion-select-option value="advanced">Avanzado</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
-            <ion-label>🎯 Goal</ion-label>
-            <ion-select formControlName="goal" interface="popover" placeholder="Select your goal">
-              <ion-select-option value="lose_weight">Lose Weight</ion-select-option>
-              <ion-select-option value="gain_muscle">Gain Muscle</ion-select-option>
-              <ion-select-option value="maintain">Maintain Fitness</ion-select-option>
+            <ion-label position="stacked">🎯 Objetivo</ion-label>
+            <ion-select formControlName="goal" placeholder="Selecciona tu objetivo">
+              <ion-select-option value="weight_loss">Pérdida de peso</ion-select-option>
+              <ion-select-option value="muscle_gain">Ganancia muscular</ion-select-option>
+              <ion-select-option value="endurance">Resistencia</ion-select-option>
+              <ion-select-option value="strength">Fuerza</ion-select-option>
+              <ion-select-option value="general_fitness">Fitness general</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
-            <ion-label>📅 Available Days per Week</ion-label>
-            <ion-select formControlName="availableDays" interface="popover" placeholder="Select available days">
-              <ion-select-option [value]="2">2 days</ion-select-option>
-              <ion-select-option [value]="3">3 days</ion-select-option>
-              <ion-select-option [value]="4">4 days</ion-select-option>
-              <ion-select-option [value]="5">5 days</ion-select-option>
-              <ion-select-option [value]="6">6 days</ion-select-option>
+            <ion-label position="stacked">📅 Días disponibles por semana</ion-label>
+            <ion-select formControlName="availableDays" placeholder="Selecciona los días">
+              <ion-select-option [value]="1">1 día</ion-select-option>
+              <ion-select-option [value]="2">2 días</ion-select-option>
+              <ion-select-option [value]="3">3 días</ion-select-option>
+              <ion-select-option [value]="4">4 días</ion-select-option>
+              <ion-select-option [value]="5">5 días</ion-select-option>
+              <ion-select-option [value]="6">6 días</ion-select-option>
+              <ion-select-option [value]="7">7 días</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
-            <ion-label>🏋️‍♂️ Available Equipment</ion-label>
-            <ion-select formControlName="equipment" interface="popover" placeholder="Select available equipment">
-              <ion-select-option value="none">No Equipment</ion-select-option>
-              <ion-select-option value="home">Home Equipment</ion-select-option>
-              <ion-select-option value="gym">Full Gym Access</ion-select-option>
+            <ion-label position="stacked">🏋️‍♂️ Equipamiento disponible</ion-label>
+            <ion-select formControlName="equipment" placeholder="Selecciona el equipamiento">
+              <ion-select-option value="none">Sin equipamiento</ion-select-option>
+              <ion-select-option value="basic">Básico (pesas, bandas)</ion-select-option>
+              <ion-select-option value="full">Gimnasio completo</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-card-content>
@@ -106,8 +101,7 @@
 
       <div class="ion-padding">
         <ion-button expand="block" type="submit" [disabled]="!form.valid">
-          Generate Workout Plan
-          <ion-icon name="fitness-outline" slot="end"></ion-icon>
+          Generar Plan de Entrenamiento
         </ion-button>
       </div>
     </form>

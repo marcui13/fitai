@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { UserProfile } from '../../core/models/user-profile.model';
 import { OpenAiService, WorkoutPlan } from '../../core/services/open-ai.service';
+import { HistoryService } from '../../core/services/history.service';
 
 @Component({
   selector: 'app-workout-result',
@@ -15,10 +16,13 @@ export class WorkoutResultPage implements OnInit {
   workoutPlan: WorkoutPlan | null = null;
   isLoading = false;
   error: string | null = null;
+  isFromHistory = false;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private openAiService: OpenAiService,
+    private historyService: HistoryService,
     private toastController: ToastController
   ) {
     const navigation = this.router.getCurrentNavigation();
@@ -31,7 +35,7 @@ export class WorkoutResultPage implements OnInit {
     if (this.profile) {
       this.generatePlan();
     } else {
-      this.error = 'No profile data found. Please fill out the form again.';
+      this.error = 'No se encontraron datos del perfil. Por favor, completa el formulario nuevamente.';
     }
   }
 
@@ -44,7 +48,7 @@ export class WorkoutResultPage implements OnInit {
     try {
       this.workoutPlan = await this.openAiService.generateWorkoutPlan(this.profile);
     } catch (err) {
-      this.error = 'Failed to generate workout plan. Please try again.';
+      this.error = 'No se pudo generar el plan de entrenamiento. Por favor, intenta de nuevo.';
       console.error('Error generating workout plan:', err);
     } finally {
       this.isLoading = false;
@@ -58,7 +62,7 @@ export class WorkoutResultPage implements OnInit {
     await navigator.clipboard.writeText(text);
 
     const toast = await this.toastController.create({
-      message: 'Workout plan copied to clipboard!',
+      message: 'Plan de entrenamiento copiado al portapapeles',
       duration: 2000,
       position: 'bottom'
     });
@@ -72,18 +76,21 @@ export class WorkoutResultPage implements OnInit {
     text += `${this.workoutPlan.description}\n\n`;
 
     this.workoutPlan.weeklySchedule.forEach(day => {
-      text += `Day ${day.dayNumber} - ${day.focus}\n`;
+      text += `Día ${day.dayNumber} - ${day.focus}\n`;
       day.exercises.forEach(exercise => {
         text += `\n${exercise.name}\n`;
-        text += `Sets: ${exercise.sets}\n`;
-        text += `Reps: ${exercise.reps}\n`;
-        if (exercise.rest) text += `Rest: ${exercise.rest}\n`;
-        if (exercise.notes) text += `Notes: ${exercise.notes}\n`;
+        text += `Series: ${exercise.sets}\n`;
+        text += `Repeticiones: ${exercise.reps}\n`;
+        if (exercise.rest) text += `Descanso: ${exercise.rest}\n`;
+        if (exercise.notes) text += `Notas: ${exercise.notes}\n`;
       });
       text += '\n';
     });
 
-    text += `General Notes:\n${this.workoutPlan.generalNotes}`;
+    text += `Notas Generales:\n${this.workoutPlan.generalNotes}\n\n`;
+    text += `Frase Motivacional:\n${this.workoutPlan.motivationalQuote}\n\n`;
+    text += `Consejo del Día:\n${this.workoutPlan.dailyTip}`;
+    
     return text;
   }
 } 
