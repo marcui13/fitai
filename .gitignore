@@ -70,3 +70,5 @@ testem.log
 Thumbs.db
 node_modules/
 src/environments/
+/android
+.env
