@@ -78,6 +78,51 @@ ion-card-title {
   font-style: italic;
 }
 
+.day-motivation {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ion-color-light);
+
+  .motivational-quote, .daily-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: var(--ion-color-light);
+    border-radius: var(--app-border-radius);
+
+    ion-icon {
+      font-size: 24px;
+      color: var(--ion-color-primary);
+      flex-shrink: 0;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--app-text-color);
+    }
+  }
+
+  .motivational-quote {
+    background: rgba(var(--ion-color-primary-rgb), 0.1);
+    
+    ion-icon {
+      color: var(--ion-color-primary);
+    }
+  }
+
+  .daily-tip {
+    background: rgba(var(--ion-color-success-rgb), 0.1);
+    
+    ion-icon {
+      color: var(--ion-color-success);
+    }
+  }
+}
+
 .notes-card {
   background: var(--ion-color-light);
   

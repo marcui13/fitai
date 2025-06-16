@@ -1,0 +1,110 @@
+.history-container {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--ion-color-medium);
+
+  ion-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+    color: var(--ion-color-primary);
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--app-text-color);
+  }
+
+  p {
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+}
+
+ion-list {
+  background: transparent;
+}
+
+ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  margin-bottom: 8px;
+  border-radius: var(--app-border-radius);
+  --background: var(--ion-color-light);
+  --border-color: transparent;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--app-text-color);
+    margin-bottom: 4px;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+}
+
+.workout-details {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+
+  ion-chip {
+    margin: 0;
+    font-size: 12px;
+    height: 24px;
+
+    ion-icon {
+      font-size: 14px;
+    }
+  }
+}
+
+ion-item-sliding {
+  margin-bottom: 8px;
+}
+
+ion-item-option {
+  --padding-start: 16px;
+  --padding-end: 16px;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+ion-item {
+  animation: slideIn 0.3s ease-out;
+  animation-fill-mode: both;
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.05}s;
+    }
+  }
+} 

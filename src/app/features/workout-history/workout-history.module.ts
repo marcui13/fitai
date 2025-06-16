@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { WorkoutResultPage } from './workout-result.page';
+import { WorkoutHistoryPage } from './workout-history.page';
 
 @NgModule({
   imports: [
@@ -14,10 +14,10 @@ import { WorkoutResultPage } from './workout-result.page';
     RouterModule.forChild([
       {
         path: '',
-        component: WorkoutResultPage
+        component: WorkoutHistoryPage
       }
     ])
   ],
-  declarations: [WorkoutResultPage]
+  declarations: [WorkoutHistoryPage]
 })
-export class WorkoutResultPageModule {} 
+export class WorkoutHistoryPageModule {} 

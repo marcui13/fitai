@@ -5,11 +5,12 @@
 }
 
 .form-title {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--app-text-color);
   margin-bottom: 16px;
   text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-subtitle {
@@ -17,32 +18,54 @@
   color: var(--ion-color-medium);
   margin-bottom: 32px;
   text-align: center;
+  line-height: 1.5;
 }
 
 ion-card {
   margin-bottom: 24px;
+  border-radius: var(--app-border-radius);
+  box-shadow: var(--app-shadow);
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 }
 
 ion-card-header {
   background: var(--ion-color-light);
   border-radius: var(--app-border-radius) var(--app-border-radius) 0 0;
+  padding: 16px;
 }
 
 ion-card-subtitle {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--ion-color-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+ion-card-content {
+  padding: 16px;
 }
 
 ion-item {
   --padding-start: 0;
   --inner-padding-end: 0;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  --background: transparent;
+  --border-color: var(--ion-color-light);
 }
 
 ion-label {
   font-weight: 500;
   color: var(--app-text-color);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 ion-input, ion-select {
@@ -53,21 +76,76 @@ ion-input, ion-select {
   background: var(--ion-color-light);
   border-radius: var(--app-border-radius);
   margin-top: 4px;
+  font-size: 16px;
+  --placeholder-color: var(--ion-color-medium);
+  --placeholder-opacity: 0.7;
+}
+
+ion-select {
+  --placeholder-opacity: 0.7;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
 }
 
 ion-note {
   color: var(--ion-color-danger);
   font-size: 12px;
   margin-top: 4px;
+  display: block;
 }
 
 ion-button {
-  margin-top: 24px;
+  margin-top: 32px;
   --padding-top: 16px;
   --padding-bottom: 16px;
   font-size: 16px;
+  --border-radius: var(--app-border-radius);
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &[disabled] {
+    --opacity: 0.7;
+  }
 }
 
 ion-icon {
   margin-left: 8px;
+  font-size: 20px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+ion-card {
+  animation: fadeIn 0.5s ease-out;
+  animation-fill-mode: both;
+
+  &:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
 } 

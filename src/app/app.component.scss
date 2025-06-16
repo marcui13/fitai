@@ -1,0 +1,109 @@
+ion-menu-button {
+  --color: var(--ion-color-primary-contrast);
+  --padding-start: 8px;
+  --padding-end: 8px;
+  font-size: 24px;
+}
+
+ion-toolbar {
+  --padding-start: 8px;
+  --padding-end: 8px;
+}
+
+ion-title {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Menu Styles */
+ion-menu {
+  --width: 50%;
+  --background: var(--ion-color-light);
+  --backdrop-opacity: 0.3;
+}
+
+ion-menu ion-content {
+  --background: var(--ion-color-light);
+}
+
+ion-menu ion-list {
+  padding: 20px 0;
+  background: transparent;
+}
+
+ion-menu ion-item {
+  --background: transparent;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --min-height: 50px;
+  margin: 4px 0;
+  border-radius: 8px;
+  --color: var(--app-text-color);
+  font-weight: 500;
+}
+
+ion-menu ion-item.selected {
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+}
+
+ion-menu ion-item ion-icon {
+  color: var(--ion-color-primary);
+  margin-right: 12px;
+  font-size: 20px;
+}
+
+ion-menu ion-item.selected ion-icon {
+  color: var(--ion-color-primary-contrast);
+}
+
+ion-menu ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+  padding: 16px;
+}
+
+ion-menu ion-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Menu Button Animation */
+ion-menu-button {
+  --color: var(--ion-color-primary-contrast);
+  transition: transform 0.2s ease-in-out;
+}
+
+ion-menu-button:hover {
+  transform: scale(1.1);
+}
+
+/* Menu Overlay Animation */
+ion-menu.menu-overlay {
+  --backdrop-opacity: 0.3;
+  animation: menuFadeIn 0.3s ease-out;
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Menu */
+@media (max-width: 576px) {
+  ion-menu {
+    --width: 80%;
+  }
+}
+
+@media (max-width: 320px) {
+  ion-menu {
+    --width: 100%;
+  }
+}

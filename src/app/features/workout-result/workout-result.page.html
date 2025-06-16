@@ -14,24 +14,35 @@
 
 <ion-content>
   <div class="result-container" *ngIf="workoutPlan">
-    <h1 class="result-title">{{ workoutPlan.title }}</h1>
+    <h1 class="result-title">💪 {{ workoutPlan.title }}</h1>
     <p class="result-description">{{ workoutPlan.description }}</p>
 
     <ion-card *ngFor="let day of workoutPlan.weeklySchedule">
       <ion-card-header>
         <ion-card-subtitle>Day {{ day.dayNumber }}</ion-card-subtitle>
-        <ion-card-title>{{ day.focus }}</ion-card-title>
+        <ion-card-title>🎯 {{ day.focus }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div class="exercise-list">
           <div class="exercise-item" *ngFor="let exercise of day.exercises">
-            <h3>{{ exercise.name }}</h3>
+            <h3>🏋️‍♂️ {{ exercise.name }}</h3>
             <p class="exercise-details">
-              <span class="sets">Sets: {{ exercise.sets }}</span>
-              <span class="reps">Reps: {{ exercise.reps }}</span>
-              <span class="rest" *ngIf="exercise.rest">Rest: {{ exercise.rest }}</span>
+              <span class="sets">📊 Sets: {{ exercise.sets }}</span>
+              <span class="reps">🔄 Reps: {{ exercise.reps }}</span>
+              <span class="rest" *ngIf="exercise.rest">⏱️ Rest: {{ exercise.rest }}</span>
             </p>
-            <p class="exercise-notes" *ngIf="exercise.notes">{{ exercise.notes }}</p>
+            <p class="exercise-notes" *ngIf="exercise.notes">💡 {{ exercise.notes }}</p>
+          </div>
+        </div>
+
+        <div class="day-motivation">
+          <div class="motivational-quote">
+            <ion-icon name="quote-outline"></ion-icon>
+            <p>{{ day.motivationalQuote }}</p>
+          </div>
+          <div class="daily-tip">
+            <ion-icon name="bulb-outline"></ion-icon>
+            <p>{{ day.dailyTip }}</p>
           </div>
         </div>
       </ion-card-content>
@@ -39,7 +50,7 @@
 
     <ion-card class="notes-card">
       <ion-card-header>
-        <ion-card-title>General Notes</ion-card-title>
+        <ion-card-title>📝 General Notes</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p>{{ workoutPlan.generalNotes }}</p>
