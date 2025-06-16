@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { UserProfile } from '../../core/models/user-profile.model';
-import { OpenAiService, WorkoutPlan } from '../../core/services/open-ai.service';
+import { WorkoutPlan } from '../../core/services/open-ai.service';
 import { HistoryService } from '../../core/services/history.service';
+import { WorkoutGeneratorService } from '../../core/services/workout-generator.service';
 
 @Component({
   selector: 'app-workout-result',
@@ -13,7 +14,7 @@ import { HistoryService } from '../../core/services/history.service';
 })
 export class WorkoutResultPage implements OnInit {
   profile: UserProfile | null = null;
-  workoutPlan: WorkoutPlan | null = null;
+  workoutPlan: WorkoutPlan | undefined;
   isLoading = false;
   error: string | null = null;
   isFromHistory = false;
@@ -21,7 +22,7 @@ export class WorkoutResultPage implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private openAiService: OpenAiService,
+    private workoutGeneratorService: WorkoutGeneratorService,
     private historyService: HistoryService,
     private toastController: ToastController
   ) {
@@ -46,7 +47,7 @@ export class WorkoutResultPage implements OnInit {
     this.error = null;
 
     try {
-      this.workoutPlan = await this.openAiService.generateWorkoutPlan(this.profile);
+      this.workoutPlan = await this.workoutGeneratorService.generateWorkoutPlan(this.profile).toPromise();
     } catch (err) {
       this.error = 'No se pudo generar el plan de entrenamiento. Por favor, intenta de nuevo.';
       console.error('Error generating workout plan:', err);

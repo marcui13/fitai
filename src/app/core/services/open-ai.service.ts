@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserProfile } from '../models/user-profile.model';
 import { HistoryService } from './history.service';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../.env/environment';
 
 export interface Exercise {
@@ -33,19 +33,17 @@ export interface WorkoutPlan {
   providedIn: 'root'
 })
 export class OpenAiService {
-  private apiUrl = 'https://api.openai.com/v1/chat/completions';
+  private readonly OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
 
   constructor(
-    private http: HttpClient,
-    private historyService: HistoryService
+    private historyService: HistoryService,
+    private http: HttpClient
   ) {}
 
   async generateWorkoutPlan(profile: UserProfile): Promise<WorkoutPlan> {
-    const prompt = this.createPrompt(profile);
-    
     try {
-      const response = await this.http.post(this.apiUrl, {
-        model: 'gpt-4',
+      const response = await this.http.post(this.OPENAI_API_URL, {
+        model: 'gpt-3.5-turbo',
         messages: [
           {
             role: 'system',
@@ -53,7 +51,7 @@ export class OpenAiService {
           },
           {
             role: 'user',
-            content: prompt
+            content: this.createPrompt(profile)
           }
         ],
         temperature: 0.2
@@ -68,7 +66,7 @@ export class OpenAiService {
       this.validateWorkoutPlan(result);
       
       // Guardar en el historial
-      this.historyService.addToHistory(profile, result);
+      this.historyService.addToHistory(profile, result, 'openai');
       
       return result;
     } catch (error) {
@@ -101,7 +99,7 @@ El plan debe incluir:
 5. Una frase motivacional general
 6. Un consejo del día general
 
-Formato de respuesta en JSON:
+IMPORTANTE: Debes responder SOLO con un objeto JSON válido que siga exactamente esta estructura:
 {
   "title": "string",
   "description": "string",
@@ -125,7 +123,9 @@ Formato de respuesta en JSON:
   "generalNotes": "string",
   "motivationalQuote": "string",
   "dailyTip": "string"
-}`;
+}
+
+No incluyas ningún texto adicional antes o después del JSON.`;
   }
 
   private parseResponse(response: any): WorkoutPlan {

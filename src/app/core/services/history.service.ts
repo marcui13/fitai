@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { WorkoutPlan } from './open-ai.service';
 import { UserProfile } from '../models/user-profile.model';
+import { AIModel } from './ai-model.service';
 
 export interface WorkoutHistory {
   id: string;
   date: Date;
   profile: UserProfile;
   workoutPlan: WorkoutPlan;
+  aiModel: AIModel;
 }
 
 @Injectable({
@@ -40,13 +42,14 @@ export class HistoryService {
     this.historySubject.next(history);
   }
 
-  addToHistory(profile: UserProfile, workoutPlan: WorkoutPlan): void {
+  addToHistory(profile: UserProfile, workoutPlan: WorkoutPlan, aiModel: AIModel): void {
     const history = this.historySubject.value;
     const newEntry: WorkoutHistory = {
       id: Date.now().toString(),
       date: new Date(),
       profile,
-      workoutPlan
+      workoutPlan,
+      aiModel
     };
 
     // Agregar al inicio del array y mantener solo los últimos MAX_HISTORY_ITEMS

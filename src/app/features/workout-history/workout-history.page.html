@@ -31,6 +31,7 @@
           <p>📅 {{ item.date | date:'dd/MM/yyyy HH:mm' }}</p>
           <p>👤 {{ item.profile.age }} años, {{ item.profile.gender === 'male' ? 'Masculino' : 'Femenino' }}</p>
           <p>🎯 Objetivo: {{ getGoalLabel(item.profile.goal) }}</p>
+          <p>🤖 Modelo: {{ item.aiModel === 'gemini' ? 'Gemini' : 'GPT-3.5' }}</p>
         </ion-label>
       </ion-item>
     </ion-list>

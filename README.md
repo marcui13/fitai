@@ -1,39 +1,40 @@
-# FitAI - Tu Asistente Personal de Entrenamiento 🤖💪
+# FitAI - Tu Entrenador Personal Inteligente
 
-FitAI es una aplicación web moderna que utiliza inteligencia artificial para generar planes de entrenamiento personalizados basados en tus objetivos, nivel de condición física y disponibilidad.
+FitAI es una aplicación móvil desarrollada con Ionic y Angular que utiliza inteligencia artificial para generar planes de entrenamiento personalizados. La aplicación soporta múltiples modelos de IA (GPT-3.5 y Gemini 2.0-flash) para ofrecer la mejor experiencia posible.
 
-## Características Principales 🌟
+## Características Principales
 
-- **Planes de Entrenamiento Personalizados**: Genera rutinas de ejercicio adaptadas a tus necesidades específicas
-- **Interfaz Intuitiva**: Diseño moderno y fácil de usar con menú lateral
-- **Perfil de Usuario**: Personaliza tu experiencia con tus datos físicos y objetivos
-- **Historial de Entrenamientos**: Guarda y revisa tus planes de entrenamiento anteriores
-- **Consejos Motivacionales**: Recibe frases motivadoras y tips diarios para mantener tu entusiasmo
-- **Diseño Responsivo**: Funciona perfectamente en dispositivos móviles y de escritorio
+- 🎯 Generación de planes de entrenamiento personalizados
+- 🤖 Soporte para múltiples modelos de IA (GPT-3.5 y Gemini 2.0-flash)
+- 👤 Perfiles de usuario personalizados
+- 📊 Seguimiento de progreso
+- 📱 Interfaz intuitiva y amigable
+- 🌐 Soporte para español
+- 📚 Historial de planes generados
+- 🔄 Capacidad de regenerar planes
+- 📋 Copiar planes al portapapeles
 
-## Tecnologías Utilizadas 🛠️
+## Requisitos Previos
 
-- Angular 17
-- Ionic Framework
-- TypeScript
-- OpenAI API
-- SCSS para estilos
-- Reactive Forms para validación
+- Node.js (v14 o superior)
+- npm (v6 o superior)
+- Ionic CLI
+- Angular CLI
+- Cuenta de desarrollador de Google Cloud (para Gemini API)
+- Cuenta de OpenAI (para GPT-3.5)
 
-## Uso 💡
+## Modelos de IA Soportados
 
-1. **Crear un Nuevo Plan de Entrenamiento**:
-   - Haz clic en "New Workout" en el menú lateral
-   - Completa el formulario con tus datos personales y objetivos
-   - Recibe un plan de entrenamiento personalizado
+### GPT-3.5
+- Modelo de OpenAI
+- Ideal para planes de entrenamiento detallados
+- Respuestas más elaboradas y contextuales
 
-2. **Ver Historial**:
-   - Accede a "Workout History" desde el menú
-   - Revisa tus planes de entrenamiento anteriores
-
-3. **Personalizar Configuración**:
-   - Usa el menú de configuración para ajustar tus preferencias
-   - Actualiza tu perfil según sea necesario
+### Gemini 2.0-flash
+- Modelo de Google
+- Respuestas más rápidas
+- Mejor rendimiento en español
+- Optimizado para dispositivos móviles
 
 ## Capturas de la App
 
