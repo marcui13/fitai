@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>FitAI Workout Planner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-container">
+    <h1 class="form-title">Create Your Workout Plan</h1>
+    <p class="form-subtitle">Tell us about yourself to get a personalized workout routine</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Personal Information</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="stacked">Age</ion-label>
+            <ion-input type="number" formControlName="age"></ion-input>
+            <ion-note slot="error" *ngIf="form.get('age')?.errors?.['required'] && form.get('age')?.touched">
+              Age is required
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Height (cm)</ion-label>
+            <ion-input type="number" formControlName="height"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Weight (kg)</ion-label>
+            <ion-input type="number" formControlName="weight"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Gender</ion-label>
+            <ion-select formControlName="gender" interface="popover">
+              <ion-select-option value="male">Male</ion-select-option>
+              <ion-select-option value="female">Female</ion-select-option>
+              <ion-select-option value="other">Other</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Fitness Profile</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label>Fitness Level</ion-label>
+            <ion-select formControlName="fitnessLevel" interface="popover">
+              <ion-select-option value="beginner">Beginner</ion-select-option>
+              <ion-select-option value="intermediate">Intermediate</ion-select-option>
+              <ion-select-option value="advanced">Advanced</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Goal</ion-label>
+            <ion-select formControlName="goal" interface="popover">
+              <ion-select-option value="lose_weight">Lose Weight</ion-select-option>
+              <ion-select-option value="gain_muscle">Gain Muscle</ion-select-option>
+              <ion-select-option value="maintain">Maintain Fitness</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Available Days per Week</ion-label>
+            <ion-select formControlName="availableDays" interface="popover">
+              <ion-select-option [value]="2">2 days</ion-select-option>
+              <ion-select-option [value]="3">3 days</ion-select-option>
+              <ion-select-option [value]="4">4 days</ion-select-option>
+              <ion-select-option [value]="5">5 days</ion-select-option>
+              <ion-select-option [value]="6">6 days</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Available Equipment</ion-label>
+            <ion-select formControlName="equipment" interface="popover">
+              <ion-select-option value="none">No Equipment</ion-select-option>
+              <ion-select-option value="home">Home Equipment</ion-select-option>
+              <ion-select-option value="gym">Full Gym Access</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+      <div class="ion-padding">
+        <ion-button expand="block" type="submit" [disabled]="!form.valid">
+          Generate Workout Plan
+          <ion-icon name="fitness-outline" slot="end"></ion-icon>
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content> 

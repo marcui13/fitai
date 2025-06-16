@@ -1,0 +1,139 @@
+.result-container {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.result-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--app-text-color);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.result-description {
+  font-size: 16px;
+  color: var(--ion-color-medium);
+  margin-bottom: 32px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+ion-card {
+  margin-bottom: 24px;
+}
+
+ion-card-header {
+  background: var(--ion-color-light);
+  border-radius: var(--app-border-radius) var(--app-border-radius) 0 0;
+}
+
+ion-card-subtitle {
+  font-size: 14px;
+  color: var(--ion-color-medium);
+}
+
+ion-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+}
+
+.exercise-list {
+  padding: 8px 0;
+}
+
+.exercise-item {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: var(--ion-color-light);
+  border-radius: var(--app-border-radius);
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--app-text-color);
+    margin: 0 0 8px 0;
+  }
+}
+
+.exercise-details {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  font-size: 14px;
+  color: var(--ion-color-medium);
+
+  span {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+.exercise-notes {
+  margin: 8px 0 0 0;
+  font-size: 14px;
+  color: var(--ion-color-tertiary);
+  font-style: italic;
+}
+
+.notes-card {
+  background: var(--ion-color-light);
+  
+  ion-card-title {
+    font-size: 18px;
+    color: var(--app-text-color);
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.5;
+    color: var(--ion-color-medium);
+  }
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+
+  ion-icon {
+    font-size: 48px;
+    color: var(--ion-color-danger);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--app-text-color);
+    margin: 0 0 8px 0;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    margin: 0 0 24px 0;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+
+  ion-spinner {
+    margin-bottom: 16px;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    margin: 0;
+  }
+} 

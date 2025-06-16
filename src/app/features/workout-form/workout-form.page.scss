@@ -1,0 +1,73 @@
+.form-container {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--app-text-color);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.form-subtitle {
+  font-size: 16px;
+  color: var(--ion-color-medium);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+ion-card {
+  margin-bottom: 24px;
+}
+
+ion-card-header {
+  background: var(--ion-color-light);
+  border-radius: var(--app-border-radius) var(--app-border-radius) 0 0;
+}
+
+ion-card-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+}
+
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 12px;
+}
+
+ion-label {
+  font-weight: 500;
+  color: var(--app-text-color);
+}
+
+ion-input, ion-select {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  background: var(--ion-color-light);
+  border-radius: var(--app-border-radius);
+  margin-top: 4px;
+}
+
+ion-note {
+  color: var(--ion-color-danger);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+ion-button {
+  margin-top: 24px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 16px;
+}
+
+ion-icon {
+  margin-left: 8px;
+} 

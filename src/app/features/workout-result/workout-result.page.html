@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/workout-form"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Your Workout Plan</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="copyToClipboard()">
+        <ion-icon name="copy-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="result-container" *ngIf="workoutPlan">
+    <h1 class="result-title">{{ workoutPlan.title }}</h1>
+    <p class="result-description">{{ workoutPlan.description }}</p>
+
+    <ion-card *ngFor="let day of workoutPlan.weeklySchedule">
+      <ion-card-header>
+        <ion-card-subtitle>Day {{ day.dayNumber }}</ion-card-subtitle>
+        <ion-card-title>{{ day.focus }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="exercise-list">
+          <div class="exercise-item" *ngFor="let exercise of day.exercises">
+            <h3>{{ exercise.name }}</h3>
+            <p class="exercise-details">
+              <span class="sets">Sets: {{ exercise.sets }}</span>
+              <span class="reps">Reps: {{ exercise.reps }}</span>
+              <span class="rest" *ngIf="exercise.rest">Rest: {{ exercise.rest }}</span>
+            </p>
+            <p class="exercise-notes" *ngIf="exercise.notes">{{ exercise.notes }}</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="notes-card">
+      <ion-card-header>
+        <ion-card-title>General Notes</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ workoutPlan.generalNotes }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="error-container" *ngIf="error">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <h2>Error</h2>
+    <p>{{ error }}</p>
+    <ion-button (click)="generatePlan()">Try Again</ion-button>
+  </div>
+
+  <div class="loading-container" *ngIf="isLoading">
+    <ion-spinner name="circular"></ion-spinner>
+    <p>Generating your personalized workout plan...</p>
+  </div>
+</ion-content> 

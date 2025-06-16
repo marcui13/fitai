@@ -2,15 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+  { path: '', redirectTo: 'workout-form', pathMatch: 'full' },
+  { path: 'workout-form', loadChildren: () => import('./features/workout-form/workout-form.module').then(m => m.WorkoutFormPageModule) },
+  { path: 'workout-result', loadChildren: () => import('./features/workout-result/workout-result.module').then(m => m.WorkoutResultPageModule) },
 ];
 
 @NgModule({

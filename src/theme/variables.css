@@ -1,0 +1,165 @@
+:root {
+  --ion-color-primary: #3880ff;
+  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3171e0;
+  --ion-color-primary-tint: #4c8dff;
+
+  --ion-color-secondary: #3dc2ff;
+  --ion-color-secondary-rgb: 61, 194, 255;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #36abe0;
+  --ion-color-secondary-tint: #50c8ff;
+
+  --ion-color-tertiary: #5260ff;
+  --ion-color-tertiary-rgb: 82, 96, 255;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #4854e0;
+  --ion-color-tertiary-tint: #6370ff;
+
+  --ion-color-success: #2dd36f;
+  --ion-color-success-rgb: 45, 211, 111;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #28ba62;
+  --ion-color-success-tint: #42d77d;
+
+  --ion-color-warning: #ffc409;
+  --ion-color-warning-rgb: 255, 196, 9;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0ac08;
+  --ion-color-warning-tint: #ffca22;
+
+  --ion-color-danger: #eb445a;
+  --ion-color-danger-rgb: 235, 68, 90;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #cf3c4f;
+  --ion-color-danger-tint: #ed576b;
+
+  --ion-color-medium: #92949c;
+  --ion-color-medium-rgb: 146, 148, 156;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #808289;
+  --ion-color-medium-tint: #9d9fa6;
+
+  --ion-color-light: #f4f5f8;
+  --ion-color-light-rgb: 244, 245, 248;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
+
+  /* Custom styles */
+  --app-background: #f8f9fa;
+  --app-card-background: #ffffff;
+  --app-text-color: #2c3e50;
+  --app-border-radius: 12px;
+  --app-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --app-spacing: 16px;
+}
+
+/* Global styles */
+ion-content {
+  --background: var(--app-background);
+}
+
+ion-card {
+  border-radius: var(--app-border-radius);
+  box-shadow: var(--app-shadow);
+  margin: var(--app-spacing);
+  background: var(--app-card-background);
+}
+
+ion-item {
+  --border-radius: var(--app-border-radius);
+  margin-bottom: 8px;
+}
+
+ion-button {
+  --border-radius: var(--app-border-radius);
+  font-weight: 600;
+  text-transform: none;
+}
+
+ion-label {
+  color: var(--app-text-color);
+  font-weight: 500;
+}
+
+/* Form specific styles */
+.form-container {
+  padding: var(--app-spacing);
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--app-text-color);
+  margin-bottom: var(--app-spacing);
+  text-align: center;
+}
+
+.form-subtitle {
+  font-size: 16px;
+  color: var(--ion-color-medium);
+  margin-bottom: calc(var(--app-spacing) * 2);
+  text-align: center;
+}
+
+.form-section {
+  margin-bottom: calc(var(--app-spacing) * 2);
+}
+
+.form-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--app-text-color);
+  margin-bottom: var(--app-spacing);
+}
+
+/* Workout result styles */
+.workout-day {
+  margin-bottom: calc(var(--app-spacing) * 2);
+}
+
+.workout-day-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ion-color-primary);
+  margin-bottom: 8px;
+}
+
+.workout-focus {
+  font-size: 16px;
+  color: var(--ion-color-secondary);
+  margin-bottom: var(--app-spacing);
+}
+
+.exercise-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 12px;
+}
+
+.exercise-name {
+  font-weight: 600;
+  color: var(--app-text-color);
+}
+
+.exercise-details {
+  font-size: 14px;
+  color: var(--ion-color-medium);
+}
+
+.exercise-notes {
+  font-size: 14px;
+  color: var(--ion-color-tertiary);
+  font-style: italic;
+  margin-top: 4px;
+} 
