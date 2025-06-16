@@ -17,6 +17,7 @@ export class HistoryService {
   private readonly STORAGE_KEY = 'workout_history';
   private readonly MAX_HISTORY_ITEMS = 10;
   private historySubject = new BehaviorSubject<WorkoutHistory[]>([]);
+  public history$ = this.historySubject.asObservable();
 
   constructor() {
     this.loadHistory();
@@ -61,8 +62,13 @@ export class HistoryService {
     return this.historySubject.asObservable();
   }
 
+  getWorkoutById(id: string): WorkoutHistory | undefined {
+    return this.historySubject.value.find(item => item.id === id);
+  }
+
   clearHistory(): void {
     this.saveHistory([]);
+    localStorage.removeItem(this.STORAGE_KEY);
   }
 
   removeFromHistory(id: string): void {

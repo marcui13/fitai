@@ -3,52 +3,42 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Workout History</ion-title>
+    <ion-title>📚 Historial de Entrenamientos</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirmClearHistory()" *ngIf="history.length > 0">
+      <ion-button (click)="confirmClearHistory()" *ngIf="(history$ | async)?.length">
         <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="history-container">
-    <div *ngIf="history.length === 0" class="empty-state">
+<ion-content class="ion-padding">
+  <ng-container *ngIf="(history$ | async) || [] as history">
+    <div *ngIf="!history.length" class="empty-state">
       <ion-icon name="fitness-outline"></ion-icon>
-      <h2>No tienes Historial de Entrenamientos</h2>
-      <p>Cuando generes un Plan de Entranamiento, lo verás aquí.</p>
+      <h2>No hay planes guardados</h2>
+      <p>Crea tu primer plan de entrenamiento para verlo aquí</p>
       <ion-button routerLink="/workout-form">
-        Crear Plan de Entrenamiento
+        <ion-icon name="add-outline" slot="start"></ion-icon>
+        Crear Nuevo Plan
       </ion-button>
     </div>
 
-    <ion-list *ngIf="history.length > 0">
-      <ion-item-sliding *ngFor="let workout of history">
-        <ion-item (click)="viewWorkoutPlan(workout)">
-          <ion-label>
-            <h2>{{ workout.workoutPlan.title }}</h2>
-            <p>{{ workout.date | date:'medium' }}</p>
-            <p class="workout-details">
-              <ion-chip color="primary" outline>
-                <ion-icon name="person-outline"></ion-icon>
-                <ion-label>{{ workout.profile.fitnessLevel }}</ion-label>
-              </ion-chip>
-              <ion-chip color="secondary" outline>
-                <ion-icon name="flag-outline"></ion-icon>
-                <ion-label>{{ workout.profile.goal }}</ion-label>
-              </ion-chip>
-            </p>
-          </ion-label>
-          <ion-icon name="chevron-forward" slot="end"></ion-icon>
-        </ion-item>
-
-        <ion-item-options side="end">
-          <ion-item-option color="danger" (click)="confirmDelete(workout.id)">
-            <ion-icon slot="icon-only" name="trash"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
+    <ion-list *ngIf="history.length">
+      <ion-item *ngFor="let item of history" [routerLink]="['/workout-detail', item.id]" detail>
+        <ion-label>
+          <h2>🏆 {{ item.workoutPlan.title }}</h2>
+          <p>📅 {{ item.date | date:'dd/MM/yyyy HH:mm' }}</p>
+          <p>👤 {{ item.profile.age }} años, {{ item.profile.gender === 'male' ? 'Masculino' : 'Femenino' }}</p>
+          <p>🎯 Objetivo: {{ getGoalLabel(item.profile.goal) }}</p>
+        </ion-label>
+      </ion-item>
     </ion-list>
-  </div>
+  </ng-container>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/workout-form">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

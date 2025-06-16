@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'workout-history',
     loadChildren: () => import('./features/workout-history/workout-history.module').then(m => m.WorkoutHistoryPageModule)
+  },
+  {
+    path: 'workout-detail/:id',
+    loadChildren: () => import('./features/workout-detail/workout-detail.module').then(m => m.WorkoutDetailPageModule)
   }
 ];
 
