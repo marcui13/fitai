@@ -71,4 +71,5 @@ Thumbs.db
 node_modules/
 src/environments/
 /android
+/ios
 .env
